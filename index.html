@@ -7,100 +7,114 @@
 
 <style>
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', sans-serif;
     margin: 0;
     background: #f4f6f8;
 }
 
+/* HEADER */
 header {
-    background: linear-gradient(90deg, #ff7b00, #ffb347);
+    background: linear-gradient(90deg,#ff7b00,#ffb347);
     color: white;
     text-align: center;
-    padding: 25px 15px;
-}
-
-.container {
-    width: 95%;
-    max-width: 1100px;
-    margin: auto;
-}
-
-.card {
-    background: white;
-    border-radius: 12px;
     padding: 20px;
-    margin: 20px 0;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
-h2, h3 {
-    margin-top: 0;
+/* HERO */
+.hero img {
+    width:100%;
+    height:280px;
+    object-fit:cover;
 }
 
-.gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
-    gap: 10px;
+/* CONTAINER */
+.container {
+    width:95%;
+    max-width:1100px;
+    margin:auto;
 }
 
-.gallery img {
-    width: 100%;
-    border-radius: 10px;
+/* CARD */
+.card {
+    background:white;
+    border-radius:12px;
+    padding:20px;
+    margin:20px 0;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+    animation:fadeUp 0.6s ease;
 }
 
-.table-wrapper {
-    overflow-x: auto;
+@keyframes fadeUp {
+    from {opacity:0; transform:translateY(20px);}
+    to {opacity:1; transform:translateY(0);}
 }
 
+/* TABLE */
+.table-wrapper {overflow-x:auto;}
 table {
-    width: 100%;
-    border-collapse: collapse;
-    min-width: 600px;
+    width:100%;
+    min-width:600px;
+    border-collapse:collapse;
 }
-
-th, td {
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
-    text-align: center;
+th,td {
+    padding:10px;
+    border-bottom:1px solid #ddd;
+    text-align:center;
 }
-
 th {
-    background: #ff7b00;
-    color: white;
-}
-
-.cta {
-    text-align: center;
-    margin: 20px 0;
-}
-
-.cta a {
-    background: #25D366;
-    color: white;
-    padding: 15px 25px;
-    text-decoration: none;
-    border-radius: 8px;
-    font-size: 16px;
-    display: inline-block;
+    background:#ff7b00;
+    color:white;
 }
 
 /* FORM */
 form input, form select {
-    width: 100%;
-    padding: 12px;
-    margin: 8px 0;
-    border-radius: 8px;
-    border: 1px solid #ccc;
+    width:100%;
+    padding:12px;
+    margin:8px 0;
+    border-radius:8px;
+    border:1px solid #ccc;
+}
+form button {
+    width:100%;
+    padding:14px;
+    background:#ff7b00;
+    color:white;
+    border:none;
+    border-radius:8px;
 }
 
-form button {
-    width: 100%;
-    padding: 14px;
-    background: #ff7b00;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 16px;
+/* CTA */
+.cta {
+    text-align:center;
+    margin:20px;
+}
+.cta a {
+    background:#25D366;
+    color:white;
+    padding:15px 25px;
+    text-decoration:none;
+    border-radius:8px;
+}
+
+/* POPUP NOTIF */
+.notif {
+    position:fixed;
+    bottom:20px;
+    left:20px;
+    background:white;
+    padding:10px 15px;
+    border-radius:8px;
+    box-shadow:0 3px 10px rgba(0,0,0,0.2);
+    display:none;
+    font-size:14px;
+}
+
+/* TIMER */
+.timer {
+    text-align:center;
+    font-size:20px;
+    font-weight:bold;
+    color:#ff0000;
 }
 </style>
 </head>
@@ -108,81 +122,41 @@ form button {
 <body>
 
 <header>
-<h2>🐔 PROGRAM KEMITRAAN TERNAK AYAM PETELUR 🔥</h2>
-<p>💸 Gajian Rutin Setiap 7 Hari + Modal Kembali</p>
+<h2>🐔 PROGRAM KEMITRAAN AYAM PETELUR 🔥</h2>
+<p>💸 Gajian 7 Hari + Modal Kembali</p>
 </header>
+
+<!-- HERO -->
+<div class="hero">
+<img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhuAlW6C9nLEJ3601BBhoitDCQqo7JDpzRcQoUNUevlP8wbzo6QBYUbLN7HjOwGXPAS5GqvUKhONszD0IK2p2Q2AGH7cvCqD5IfebPu3JgSp8vTYHo9JYJi_4dQIwrmQrNsWuGDsI9g4AA_IlDg5NcEoa3OXQq4j0dJpIMjnGAgDIsfVhIQ0bGZYnOb6MI/s320/layer-program.webp">
+</div>
 
 <div class="container">
 
-<!-- GALERI -->
 <div class="card">
-<h3>📸 Aktivitas Peternakan Ayam Petelur</h3>
-<div class="gallery">
-<img src="https://images.unsplash.com/photo-1604908177522-402c9c1b6b52" alt="">
-<img src="https://images.unsplash.com/photo-1598514982845-1b9c7c7d68c4" alt="">
-<img src="https://images.unsplash.com/photo-1612197526280-9b1cfd540139" alt="">
-</div>
+<h3>⏳ PROMO BERAKHIR DALAM:</h3>
+<div class="timer" id="timer"></div>
 </div>
 
-<!-- TABEL -->
 <div class="card">
-<h3>📊 Tabel Paket Investasi</h3>
-
+<h3>📊 Tabel Paket</h3>
 <div class="table-wrapper">
 <table>
 <tr>
-<th>Paket</th>
-<th>Modal</th>
-<th>Produksi/Hari</th>
-<th>Pendapatan 7 Hari</th>
-<th>Profit Investor</th>
-<th>Total Diterima</th>
+<th>Paket</th><th>Modal</th><th>Produksi</th><th>Pendapatan</th><th>Profit</th><th>Total</th>
 </tr>
 
-<tr>
-<td>🥉 Bronze</td>
-<td>Rp 1.500.000</td>
-<td>456</td>
-<td>Rp 6.720.000</td>
-<td>Rp 3.060.000</td>
-<td>Rp 4.560.000</td>
-</tr>
-
-<tr>
-<td>🥈 Silver</td>
-<td>Rp 3.000.000</td>
-<td>912</td>
-<td>Rp 13.440.000</td>
-<td>Rp 6.120.000</td>
-<td>Rp 9.120.000</td>
-</tr>
-
-<tr>
-<td>🥇 Gold</td>
-<td>Rp 7.500.000</td>
-<td>2.280</td>
-<td>Rp 33.600.000</td>
-<td>Rp 15.300.000</td>
-<td>Rp 22.800.000</td>
-</tr>
-
-<tr>
-<td>💎 Platinum</td>
-<td>Rp 13.500.000</td>
-<td>4.104</td>
-<td>Rp 60.480.000</td>
-<td>Rp 27.540.000</td>
-<td>Rp 41.040.000</td>
-</tr>
+<tr><td>Bronze</td><td>1.5jt</td><td>456</td><td>6.7jt</td><td>3.06jt</td><td>4.56jt</td></tr>
+<tr><td>Silver</td><td>3jt</td><td>912</td><td>13.4jt</td><td>6.12jt</td><td>9.12jt</td></tr>
+<tr><td>Gold</td><td>7.5jt</td><td>2280</td><td>33.6jt</td><td>15.3jt</td><td>22.8jt</td></tr>
+<tr><td>Platinum</td><td>13.5jt</td><td>4104</td><td>60.4jt</td><td>27.5jt</td><td>41jt</td></tr>
 
 </table>
 </div>
 </div>
 
-<!-- FORM -->
 <div class="card">
-<h3>📝 Form Data Investor</h3>
-
+<h3>📝 Form Investor</h3>
 <form onsubmit="kirimWA(); return false;">
 <input type="text" id="nama" placeholder="Nama Lengkap" required>
 <input type="tel" id="hp" placeholder="Nomor HP" required>
@@ -195,34 +169,51 @@ form button {
 <option>Gold</option>
 <option>Platinum</option>
 </select>
-
 <button type="submit">Daftar Sekarang</button>
 </form>
 </div>
 
-<!-- CTA -->
 <div class="cta">
-<a href="https://wa.me/6281262433533">📲 Chat Admin Sekarang</a>
+<a href="https://wa.me/6281262433533">📲 Chat Admin</a>
 </div>
 
 </div>
+
+<!-- NOTIF -->
+<div class="notif" id="notif"></div>
 
 <script>
+// TIMER 24 JAM
+let end = new Date().getTime() + 86400000;
+setInterval(()=>{
+let now = new Date().getTime();
+let dist = end - now;
+let h = Math.floor((dist%(1000*60*60*24))/(1000*60*60));
+let m = Math.floor((dist%(1000*60*60))/(1000*60));
+let s = Math.floor((dist%(1000*60))/1000);
+document.getElementById("timer").innerHTML = h+"j "+m+"m "+s+"d";
+},1000);
+
+// NOTIF RANDOM
+let nama = ["Andi","Budi","Siti","Rina","Agus","Dewi"];
+setInterval(()=>{
+let n = nama[Math.floor(Math.random()*nama.length)];
+let notif = document.getElementById("notif");
+notif.innerHTML = n+" baru saja daftar paket!";
+notif.style.display="block";
+setTimeout(()=>notif.style.display="none",3000);
+},5000);
+
+// WA FORM
 function kirimWA(){
-    let nama = document.getElementById("nama").value;
-    let hp = document.getElementById("hp").value;
-    let bank = document.getElementById("bank").value;
-    let npwp = document.getElementById("npwp").value;
-    let paket = document.getElementById("paket").value;
+let nama = document.getElementById("nama").value;
+let hp = document.getElementById("hp").value;
+let bank = document.getElementById("bank").value;
+let npwp = document.getElementById("npwp").value;
+let paket = document.getElementById("paket").value;
 
-    let pesan = `PENDAFTARAN INVESTOR%0A
-Nama: ${nama}%0A
-HP: ${hp}%0A
-Rekening: ${bank}%0A
-NPWP: ${npwp}%0A
-Paket: ${paket}`;
-
-    window.open(`https://wa.me/6281262433533?text=${pesan}`, '_blank');
+let pesan = `PENDAFTARAN INVESTOR%0ANama:${nama}%0AHP:${hp}%0ARek:${bank}%0ANPWP:${npwp}%0APaket:${paket}`;
+window.open(`https://wa.me/6281262433533?text=${pesan}`);
 }
 </script>
 
