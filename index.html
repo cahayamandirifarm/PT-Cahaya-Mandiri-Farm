@@ -33,7 +33,17 @@ header {
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
-img {
+h2, h3 {
+    margin-top: 0;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+    gap: 10px;
+}
+
+.gallery img {
     width: 100%;
     border-radius: 10px;
 }
@@ -51,6 +61,7 @@ table {
 th, td {
     padding: 10px;
     border-bottom: 1px solid #ddd;
+    text-align: center;
 }
 
 th {
@@ -70,6 +81,7 @@ th {
     text-decoration: none;
     border-radius: 8px;
     font-size: 16px;
+    display: inline-block;
 }
 
 /* FORM */
@@ -90,7 +102,6 @@ form button {
     border-radius: 8px;
     font-size: 16px;
 }
-
 </style>
 </head>
 
@@ -103,17 +114,17 @@ form button {
 
 <div class="container">
 
+<!-- GALERI -->
 <div class="card">
-<img src="https://images.unsplash.com/photo-1589923188900-85dae523342b">
-<h3>Kenapa Pilih Kami?</h3>
-<ul>
-<li>Produksi maksimal</li>
-<li>Dikelola profesional</li>
-<li>Tanpa ribet</li>
-<li>Hasil rutin setiap minggu</li>
-</ul>
+<h3>📸 Aktivitas Peternakan Ayam Petelur</h3>
+<div class="gallery">
+<img src="https://images.unsplash.com/photo-1604908177522-402c9c1b6b52" alt="">
+<img src="https://images.unsplash.com/photo-1598514982845-1b9c7c7d68c4" alt="">
+<img src="https://images.unsplash.com/photo-1612197526280-9b1cfd540139" alt="">
+</div>
 </div>
 
+<!-- TABEL -->
 <div class="card">
 <h3>📊 Tabel Paket Investasi</h3>
 
@@ -168,6 +179,7 @@ form button {
 </div>
 </div>
 
+<!-- FORM -->
 <div class="card">
 <h3>📝 Form Data Investor</h3>
 
@@ -184,10 +196,11 @@ form button {
 <option>Platinum</option>
 </select>
 
-<button type="submit">Kirim & Daftar</button>
+<button type="submit">Daftar Sekarang</button>
 </form>
 </div>
 
+<!-- CTA -->
 <div class="cta">
 <a href="https://wa.me/6281262433533">📲 Chat Admin Sekarang</a>
 </div>
@@ -202,7 +215,12 @@ function kirimWA(){
     let npwp = document.getElementById("npwp").value;
     let paket = document.getElementById("paket").value;
 
-    let pesan = `PENDAFTARAN INVESTOR%nama: ${nama}%0aHP: ${hp}%0aRekening: ${bank}%0aNPWP: ${npwp}%0aPaket: ${paket}`;
+    let pesan = `PENDAFTARAN INVESTOR%0A
+Nama: ${nama}%0A
+HP: ${hp}%0A
+Rekening: ${bank}%0A
+NPWP: ${npwp}%0A
+Paket: ${paket}`;
 
     window.open(`https://wa.me/6281262433533?text=${pesan}`, '_blank');
 }
