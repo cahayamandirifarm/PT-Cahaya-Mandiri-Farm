@@ -3,127 +3,188 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kemitraan Ternak Ayam Petelur</title>
+<title>Program Kemitraan Ternak Ayam Petelur</title>
 
 <style>
-body {
-    font-family: 'Segoe UI', sans-serif;
-    margin: 0;
-    background: #f4f6f8;
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:Arial,sans-serif;
+background:#f4f6f8;
+color:#222;
 }
 
 /* HEADER */
-header {
-    background: linear-gradient(90deg,#ff7b00,#ffb347);
-    color: white;
-    text-align: center;
-    padding: 20px;
+header{
+background:linear-gradient(90deg,#ff7b00,#ffb347);
+padding:20px;
+text-align:center;
+color:white;
+position:sticky;
+top:0;
+z-index:999;
+box-shadow:0 2px 10px rgba(0,0,0,0.2);
+}
+
+header h1{
+font-size:28px;
+margin-bottom:8px;
+}
+
+/* LIVE NOTIF */
+.live-bar{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+background:#16a34a;
+color:white;
+padding:10px;
+overflow:hidden;
+z-index:9999;
+font-size:14px;
+font-weight:bold;
+white-space:nowrap;
+}
+
+.live-content{
+display:inline-block;
+padding-left:100%;
+animation:marquee 20s linear infinite;
+}
+
+@keyframes marquee{
+0%{transform:translateX(0);}
+100%{transform:translateX(-100%);}
 }
 
 /* HERO */
-.hero img {
-    width:100%;
-    height:280px;
-    object-fit:cover;
+.hero img{
+width:100%;
+height:320px;
+object-fit:cover;
+display:block;
 }
 
 /* CONTAINER */
-.container {
-    width:95%;
-    max-width:1100px;
-    margin:auto;
+.container{
+width:95%;
+max-width:1100px;
+margin:auto;
+padding:20px 0;
 }
 
 /* CARD */
-.card {
-    background:white;
-    border-radius:12px;
-    padding:20px;
-    margin:20px 0;
-    box-shadow:0 4px 10px rgba(0,0,0,0.1);
-    animation:fadeUp 0.6s ease;
-}
-
-@keyframes fadeUp {
-    from {opacity:0; transform:translateY(20px);}
-    to {opacity:1; transform:translateY(0);}
+.card{
+background:white;
+padding:20px;
+border-radius:12px;
+margin-bottom:20px;
+box-shadow:0 4px 10px rgba(0,0,0,0.1);
 }
 
 /* TABLE */
-.table-wrapper {overflow-x:auto;}
-table {
-    width:100%;
-    min-width:600px;
-    border-collapse:collapse;
+.table-wrapper{
+overflow-x:auto;
 }
-th,td {
-    padding:10px;
-    border-bottom:1px solid #ddd;
-    text-align:center;
+
+table{
+width:100%;
+min-width:700px;
+border-collapse:collapse;
 }
-th {
-    background:#ff7b00;
-    color:white;
+
+th,td{
+padding:12px;
+border-bottom:1px solid #ddd;
+text-align:center;
+}
+
+th{
+background:#ff7b00;
+color:white;
 }
 
 /* FORM */
-form input, form select {
-    width:100%;
-    padding:12px;
-    margin:8px 0;
-    border-radius:8px;
-    border:1px solid #ccc;
+form input,
+form select{
+width:100%;
+padding:12px;
+margin:8px 0;
+border-radius:8px;
+border:1px solid #ccc;
 }
-form button {
-    width:100%;
-    padding:14px;
-    background:#ff7b00;
-    color:white;
-    border:none;
-    border-radius:8px;
+
+form button{
+width:100%;
+padding:14px;
+border:none;
+border-radius:8px;
+background:#ff7b00;
+color:white;
+font-size:16px;
+cursor:pointer;
 }
 
 /* CTA */
-.cta {
-    text-align:center;
-    margin:20px;
-}
-.cta a {
-    background:#25D366;
-    color:white;
-    padding:15px 25px;
-    text-decoration:none;
-    border-radius:8px;
+.cta{
+text-align:center;
+margin-top:20px;
 }
 
-/* POPUP NOTIF */
-.notif {
-    position:fixed;
-    bottom:20px;
-    left:20px;
-    background:white;
-    padding:10px 15px;
-    border-radius:8px;
-    box-shadow:0 3px 10px rgba(0,0,0,0.2);
-    display:none;
-    font-size:14px;
+.cta a{
+display:inline-block;
+background:#25D366;
+color:white;
+padding:15px 25px;
+border-radius:8px;
+text-decoration:none;
+font-size:18px;
 }
 
 /* TIMER */
-.timer {
-    text-align:center;
-    font-size:20px;
-    font-weight:bold;
-    color:#ff0000;
+.timer{
+text-align:center;
+font-size:24px;
+font-weight:bold;
+color:red;
+margin-top:10px;
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+
+header h1{
+font-size:22px;
+}
+
+.hero img{
+height:220px;
+}
+
+.live-bar{
+font-size:12px;
+}
 }
 </style>
 </head>
 
 <body>
 
-<header>
-<h2>🐔 PROGRAM KEMITRAAN AYAM PETELUR 🔥</h2>
-<p>💸 Gajian 7 Hari + Modal Kembali</p>
+<!-- NOTIFIKASI LIVE -->
+<div class="live-bar">
+<div class="live-content" id="liveNotif">
+🟢 Loading data penarikan profit investor...
+</div>
+</div>
+
+<header style="margin-top:40px;">
+<h1>🐔 PROGRAM KEMITRAAN TERNAK AYAM PETELUR 🔥</h1>
+<p>💸 Gajian Rutin Setiap 7 Hari + Modal Kembali</p>
 </header>
 
 <!-- HERO -->
@@ -133,35 +194,82 @@ form button {
 
 <div class="container">
 
+<!-- TIMER -->
 <div class="card">
-<h3>⏳ PROMO BERAKHIR DALAM:</h3>
+<h2>⏳ PROMO BERAKHIR DALAM</h2>
 <div class="timer" id="timer"></div>
 </div>
 
+<!-- TABLE -->
 <div class="card">
-<h3>📊 Tabel Paket</h3>
+<h2>📊 Tabel Paket Investasi</h2>
+
 <div class="table-wrapper">
 <table>
+
 <tr>
-<th>Paket</th><th>Modal</th><th>Produksi</th><th>Pendapatan</th><th>Profit</th><th>Total</th>
+<th>Paket</th>
+<th>Modal</th>
+<th>Produksi/Hari</th>
+<th>Pendapatan</th>
+<th>Profit Investor</th>
+<th>Total Diterima</th>
 </tr>
 
-<tr><td>Bronze</td><td>1.5jt</td><td>456</td><td>6.7jt</td><td>3.06jt</td><td>4.56jt</td></tr>
-<tr><td>Silver</td><td>3jt</td><td>912</td><td>13.4jt</td><td>6.12jt</td><td>9.12jt</td></tr>
-<tr><td>Gold</td><td>7.5jt</td><td>2280</td><td>33.6jt</td><td>15.3jt</td><td>22.8jt</td></tr>
-<tr><td>Platinum</td><td>13.5jt</td><td>4104</td><td>60.4jt</td><td>27.5jt</td><td>41jt</td></tr>
+<tr>
+<td>🥉 Bronze</td>
+<td>Rp 1.500.000</td>
+<td>456 Butir</td>
+<td>Rp 6.720.000</td>
+<td>Rp 3.060.000</td>
+<td>Rp 4.560.000</td>
+</tr>
+
+<tr>
+<td>🥈 Silver</td>
+<td>Rp 3.000.000</td>
+<td>912 Butir</td>
+<td>Rp 13.440.000</td>
+<td>Rp 6.120.000</td>
+<td>Rp 9.120.000</td>
+</tr>
+
+<tr>
+<td>🥇 Gold</td>
+<td>Rp 7.500.000</td>
+<td>2.280 Butir</td>
+<td>Rp 33.600.000</td>
+<td>Rp 15.300.000</td>
+<td>Rp 22.800.000</td>
+</tr>
+
+<tr>
+<td>💎 Platinum</td>
+<td>Rp 13.500.000</td>
+<td>4.104 Butir</td>
+<td>Rp 60.480.000</td>
+<td>Rp 27.540.000</td>
+<td>Rp 41.040.000</td>
+</tr>
 
 </table>
 </div>
 </div>
 
+<!-- FORM -->
 <div class="card">
-<h3>📝 Form Investor</h3>
+<h2>📝 Form Data Investor</h2>
+
 <form onsubmit="kirimWA(); return false;">
+
 <input type="text" id="nama" placeholder="Nama Lengkap" required>
+
 <input type="tel" id="hp" placeholder="Nomor HP" required>
+
 <input type="text" id="bank" placeholder="Rekening Bank" required>
+
 <input type="text" id="npwp" placeholder="NPWP (Jika Ada)">
+
 <select id="paket" required>
 <option value="">Pilih Paket</option>
 <option>Bronze</option>
@@ -169,182 +277,101 @@ form button {
 <option>Gold</option>
 <option>Platinum</option>
 </select>
+
 <button type="submit">Daftar Sekarang</button>
+
 </form>
 </div>
 
+<!-- CTA -->
 <div class="cta">
-<a href="https://wa.me/6281262433533">📲 Chat Admin</a>
+<a href="https://wa.me/6281262433533">
+📲 Chat WhatsApp Admin
+</a>
 </div>
 
 </div>
-
-<!-- NOTIF -->
-<div class="notif" id="notif"></div>
 
 <script>
-// TIMER 24 JAM
+
+// TIMER
 let end = new Date().getTime() + 86400000;
-setInterval(()=>{
+
+setInterval(function(){
+
 let now = new Date().getTime();
-let dist = end - now;
-let h = Math.floor((dist%(1000*60*60*24))/(1000*60*60));
-let m = Math.floor((dist%(1000*60*60))/(1000*60));
-let s = Math.floor((dist%(1000*60))/1000);
-document.getElementById("timer").innerHTML = h+"j "+m+"m "+s+"d";
+let distance = end - now;
+
+let hours = Math.floor((distance % (1000*60*60*24)) / (1000*60*60));
+let minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
+let seconds = Math.floor((distance % (1000*60)) / 1000);
+
+document.getElementById("timer").innerHTML =
+hours + " Jam " + minutes + " Menit " + seconds + " Detik";
+
 },1000);
 
-// NOTIF RANDOM
-let nama = ["Andi","Budi","Siti","Rina","Agus","Dewi"];
-setInterval(()=>{
-let n = nama[Math.floor(Math.random()*nama.length)];
-let notif = document.getElementById("notif");
-notif.innerHTML = n+" baru saja daftar paket!";
-notif.style.display="block";
-setTimeout(()=>notif.style.display="none",3000);
-},5000);
 
-// WA FORM
+// LIVE NOTIFIKASI
+const notifData = [
+
+"Andi dari Batam berhasil menarik profit Rp 3.060.000 • ",
+"Budi dari Pekanbaru menerima profit mingguan Rp 6.120.000 • ",
+"Rina dari Jakarta berhasil mencairkan profit Rp 15.300.000 • ",
+"Agus dari Bandung menerima hasil investasi Rp 27.540.000 • ",
+"Sri dari Medan berhasil menerima transfer profit • ",
+"Linda dari Aceh melakukan penarikan profit mingguan • ",
+"Fajar dari Surabaya menerima hasil ternak • ",
+"Rudi dari Lampung berhasil menerima profit • ",
+"Yuni dari Bali menerima transfer hasil investasi • ",
+"Hendra dari Bogor berhasil menarik keuntungan • "
+
+];
+
+function updateNotif(){
+
+let hasil = "";
+
+for(let i=0;i<20;i++){
+
+hasil += notifData[Math.floor(Math.random()*notifData.length)];
+
+}
+
+document.getElementById("liveNotif").innerHTML = hasil;
+
+}
+
+setInterval(updateNotif,8000);
+
+updateNotif();
+
+
+// FORM WA
 function kirimWA(){
+
 let nama = document.getElementById("nama").value;
 let hp = document.getElementById("hp").value;
 let bank = document.getElementById("bank").value;
 let npwp = document.getElementById("npwp").value;
 let paket = document.getElementById("paket").value;
 
-let pesan = `PENDAFTARAN INVESTOR%0ANama:${nama}%0AHP:${hp}%0ARek:${bank}%0ANPWP:${npwp}%0APaket:${paket}`;
-window.open(`https://wa.me/6281262433533?text=${pesan}`);
+let pesan =
+`PENDAFTARAN INVESTOR%0A%0A` +
+`Nama : ${nama}%0A` +
+`Nomor HP : ${hp}%0A` +
+`Rekening : ${bank}%0A` +
+`NPWP : ${npwp}%0A` +
+`Paket : ${paket}`;
+
+window.open(
+`https://wa.me/6281262433533?text=${pesan}`,
+'_blank'
+);
+
 }
+
 </script>
 
 </body>
     </html>
-<script>
-const dataNotif = [
-"Andi dari Batam berhasil menerima profit Rp 3.060.000",
-"Budi dari Pekanbaru berhasil menarik profit Rp 6.120.000",
-"Sri dari Medan berhasil menerima profit mingguan",
-"Agus dari Padang berhasil menarik hasil investasi",
-"Linda dari Jakarta menerima profit Rp 15.300.000",
-"Fajar dari Surabaya berhasil menerima profit mingguan",
-"Yuni dari Batam melakukan perpanjangan kontrak",
-"Hendra dari Bandung menerima profit Rp 27.540.000",
-"Dewi dari Aceh berhasil mencairkan profit",
-"Rina dari Jogja berhasil menerima hasil ternak",
-"Rahmat dari Lampung menerima profit Rp 3.060.000",
-"Putri dari Bali berhasil menarik keuntungan",
-"Arif dari Makassar menerima profit mingguan",
-"Nina dari Solo berhasil menerima transfer profit",
-"Sandi dari Depok melakukan upgrade paket Gold",
-"Yusuf dari Bogor berhasil menerima hasil investasi",
-"Rika dari Tangerang berhasil menarik profit",
-"Anton dari Palembang menerima profit Rp 6.120.000",
-"Ilham dari Bekasi berhasil menerima profit mingguan",
-"Rudi dari Medan melakukan perpanjangan kontrak",
-"Wulan dari Batam menerima profit Rp 15.300.000",
-"Farhan dari Aceh berhasil menarik hasil ternak",
-"Maya dari Samarinda menerima transfer profit",
-"Dodi dari Bandung berhasil menerima profit",
-"Zahra dari Jakarta melakukan upgrade paket Platinum",
-"Bayu dari Surabaya menerima profit Rp 27.540.000",
-"Joko dari Semarang berhasil menerima profit mingguan",
-"Anisa dari Pekanbaru berhasil mencairkan hasil",
-"Tono dari Tasikmalaya menerima profit",
-"Reni dari Batam berhasil menarik keuntungan",
-"Fikri dari Cirebon menerima profit Rp 6.120.000",
-"Salsa dari Medan menerima hasil investasi",
-"Rian dari Solo berhasil menarik profit",
-"Fitri dari Padang menerima transfer mingguan",
-"Galih dari Bekasi berhasil menerima profit",
-"Nadia dari Lampung berhasil menarik hasil",
-"Rizki dari Aceh menerima profit Rp 3.060.000",
-"Arman dari Bogor berhasil mencairkan keuntungan",
-"Lina dari Bandung menerima hasil ternak",
-"Fauzi dari Tangerang menerima transfer profit",
-"Dina dari Bali berhasil menarik hasil investasi",
-"Yoga dari Batam berhasil menerima profit mingguan",
-"Sinta dari Surabaya menerima profit Rp 15.300.000",
-"Reza dari Jakarta berhasil menarik profit",
-"Aulia dari Medan menerima transfer hasil",
-"Riko dari Pekanbaru menerima profit mingguan",
-"Vina dari Solo berhasil menerima profit",
-"Bagas dari Bandung menerima hasil investasi",
-"Desi dari Jogja berhasil mencairkan profit",
-"Imam dari Bogor menerima profit Rp 6.120.000",
-"Rama dari Batam berhasil menerima hasil ternak",
-"Lisa dari Padang menerima transfer mingguan",
-"Ardi dari Jakarta berhasil menerima profit",
-"Novi dari Makassar melakukan upgrade paket",
-"Putra dari Medan menerima profit Rp 27.540.000",
-"Yanti dari Aceh berhasil menarik profit",
-"Rendi dari Surabaya menerima hasil investasi",
-"Citra dari Bali berhasil menerima transfer",
-"Hafiz dari Lampung menerima profit mingguan",
-"Melati dari Bekasi berhasil menarik hasil",
-"Dian dari Bandung menerima profit Rp 15.300.000",
-"Rizal dari Padang berhasil menerima keuntungan",
-"Nur dari Batam menerima transfer profit",
-"Roni dari Solo berhasil menarik profit",
-"Tari dari Jakarta menerima hasil mingguan",
-"Agung dari Pekanbaru menerima profit Rp 6.120.000",
-"Rika dari Bandung berhasil menerima profit",
-"Rifki dari Medan berhasil menarik hasil",
-"Mira dari Surabaya menerima transfer keuntungan",
-"Yoga dari Bogor menerima profit mingguan",
-"Fani dari Batam berhasil menerima hasil ternak",
-"Rudi dari Aceh menerima profit Rp 3.060.000",
-"Anwar dari Lampung berhasil menarik keuntungan",
-"Sari dari Bekasi menerima hasil investasi",
-"Jihan dari Makassar berhasil menerima profit",
-"Rian dari Tangerang menerima transfer mingguan",
-"Putri dari Jakarta berhasil menarik hasil",
-"Ilham dari Batam menerima profit Rp 15.300.000",
-"Wahyu dari Bandung berhasil menerima keuntungan",
-"Dewi dari Bali menerima hasil ternak",
-"Raka dari Pekanbaru berhasil menarik profit",
-"Linda dari Solo menerima transfer hasil",
-"Aris dari Bogor berhasil menerima profit",
-"Nisa dari Medan menerima profit mingguan",
-"Fadil dari Jakarta berhasil menarik hasil",
-"Rina dari Aceh menerima transfer profit",
-"Bagus dari Surabaya berhasil menerima keuntungan",
-"Mila dari Batam menerima hasil investasi",
-"Joni dari Bandung berhasil menerima profit",
-"Fira dari Lampung menerima profit Rp 6.120.000",
-"Rendy dari Solo berhasil menerima transfer",
-"Siska dari Jakarta menerima hasil mingguan",
-"Fauzan dari Padang berhasil menarik profit",
-"Anita dari Makassar menerima transfer profit",
-"Deni dari Bekasi berhasil menerima keuntungan",
-"Yusuf dari Batam menerima hasil ternak",
-"Salma dari Bandung berhasil menerima profit",
-"Riko dari Medan menerima transfer hasil",
-"Indah dari Jakarta berhasil menarik profit",
-"Farid dari Surabaya menerima hasil investasi",
-"Tina dari Bali berhasil menerima profit mingguan",
-"Rafi dari Aceh menerima transfer keuntungan",
-"Nurul dari Bogor berhasil menerima hasil ternak"
-];
-
-function showNotif(){
-const notif = document.getElementById("liveNotif");
-
-let random = dataNotif[Math.floor(Math.random()*dataNotif.length)];
-
-notif.innerHTML = `
-<strong>🟢 Penarikan Profit Berhasil</strong><br><br>
-${random}<br>
-<small>Baru saja • 1 menit lalu</small>
-`;
-
-notif.style.display="block";
-
-setTimeout(()=>{
-notif.style.display="none";
-},4000);
-}
-
-setInterval(showNotif,5000);
-
-setTimeout(showNotif,2000);
-</script>
