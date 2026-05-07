@@ -219,3 +219,132 @@ window.open(`https://wa.me/6281262433533?text=${pesan}`);
 
 </body>
     </html>
+<script>
+const dataNotif = [
+"Andi dari Batam berhasil menerima profit Rp 3.060.000",
+"Budi dari Pekanbaru berhasil menarik profit Rp 6.120.000",
+"Sri dari Medan berhasil menerima profit mingguan",
+"Agus dari Padang berhasil menarik hasil investasi",
+"Linda dari Jakarta menerima profit Rp 15.300.000",
+"Fajar dari Surabaya berhasil menerima profit mingguan",
+"Yuni dari Batam melakukan perpanjangan kontrak",
+"Hendra dari Bandung menerima profit Rp 27.540.000",
+"Dewi dari Aceh berhasil mencairkan profit",
+"Rina dari Jogja berhasil menerima hasil ternak",
+"Rahmat dari Lampung menerima profit Rp 3.060.000",
+"Putri dari Bali berhasil menarik keuntungan",
+"Arif dari Makassar menerima profit mingguan",
+"Nina dari Solo berhasil menerima transfer profit",
+"Sandi dari Depok melakukan upgrade paket Gold",
+"Yusuf dari Bogor berhasil menerima hasil investasi",
+"Rika dari Tangerang berhasil menarik profit",
+"Anton dari Palembang menerima profit Rp 6.120.000",
+"Ilham dari Bekasi berhasil menerima profit mingguan",
+"Rudi dari Medan melakukan perpanjangan kontrak",
+"Wulan dari Batam menerima profit Rp 15.300.000",
+"Farhan dari Aceh berhasil menarik hasil ternak",
+"Maya dari Samarinda menerima transfer profit",
+"Dodi dari Bandung berhasil menerima profit",
+"Zahra dari Jakarta melakukan upgrade paket Platinum",
+"Bayu dari Surabaya menerima profit Rp 27.540.000",
+"Joko dari Semarang berhasil menerima profit mingguan",
+"Anisa dari Pekanbaru berhasil mencairkan hasil",
+"Tono dari Tasikmalaya menerima profit",
+"Reni dari Batam berhasil menarik keuntungan",
+"Fikri dari Cirebon menerima profit Rp 6.120.000",
+"Salsa dari Medan menerima hasil investasi",
+"Rian dari Solo berhasil menarik profit",
+"Fitri dari Padang menerima transfer mingguan",
+"Galih dari Bekasi berhasil menerima profit",
+"Nadia dari Lampung berhasil menarik hasil",
+"Rizki dari Aceh menerima profit Rp 3.060.000",
+"Arman dari Bogor berhasil mencairkan keuntungan",
+"Lina dari Bandung menerima hasil ternak",
+"Fauzi dari Tangerang menerima transfer profit",
+"Dina dari Bali berhasil menarik hasil investasi",
+"Yoga dari Batam berhasil menerima profit mingguan",
+"Sinta dari Surabaya menerima profit Rp 15.300.000",
+"Reza dari Jakarta berhasil menarik profit",
+"Aulia dari Medan menerima transfer hasil",
+"Riko dari Pekanbaru menerima profit mingguan",
+"Vina dari Solo berhasil menerima profit",
+"Bagas dari Bandung menerima hasil investasi",
+"Desi dari Jogja berhasil mencairkan profit",
+"Imam dari Bogor menerima profit Rp 6.120.000",
+"Rama dari Batam berhasil menerima hasil ternak",
+"Lisa dari Padang menerima transfer mingguan",
+"Ardi dari Jakarta berhasil menerima profit",
+"Novi dari Makassar melakukan upgrade paket",
+"Putra dari Medan menerima profit Rp 27.540.000",
+"Yanti dari Aceh berhasil menarik profit",
+"Rendi dari Surabaya menerima hasil investasi",
+"Citra dari Bali berhasil menerima transfer",
+"Hafiz dari Lampung menerima profit mingguan",
+"Melati dari Bekasi berhasil menarik hasil",
+"Dian dari Bandung menerima profit Rp 15.300.000",
+"Rizal dari Padang berhasil menerima keuntungan",
+"Nur dari Batam menerima transfer profit",
+"Roni dari Solo berhasil menarik profit",
+"Tari dari Jakarta menerima hasil mingguan",
+"Agung dari Pekanbaru menerima profit Rp 6.120.000",
+"Rika dari Bandung berhasil menerima profit",
+"Rifki dari Medan berhasil menarik hasil",
+"Mira dari Surabaya menerima transfer keuntungan",
+"Yoga dari Bogor menerima profit mingguan",
+"Fani dari Batam berhasil menerima hasil ternak",
+"Rudi dari Aceh menerima profit Rp 3.060.000",
+"Anwar dari Lampung berhasil menarik keuntungan",
+"Sari dari Bekasi menerima hasil investasi",
+"Jihan dari Makassar berhasil menerima profit",
+"Rian dari Tangerang menerima transfer mingguan",
+"Putri dari Jakarta berhasil menarik hasil",
+"Ilham dari Batam menerima profit Rp 15.300.000",
+"Wahyu dari Bandung berhasil menerima keuntungan",
+"Dewi dari Bali menerima hasil ternak",
+"Raka dari Pekanbaru berhasil menarik profit",
+"Linda dari Solo menerima transfer hasil",
+"Aris dari Bogor berhasil menerima profit",
+"Nisa dari Medan menerima profit mingguan",
+"Fadil dari Jakarta berhasil menarik hasil",
+"Rina dari Aceh menerima transfer profit",
+"Bagus dari Surabaya berhasil menerima keuntungan",
+"Mila dari Batam menerima hasil investasi",
+"Joni dari Bandung berhasil menerima profit",
+"Fira dari Lampung menerima profit Rp 6.120.000",
+"Rendy dari Solo berhasil menerima transfer",
+"Siska dari Jakarta menerima hasil mingguan",
+"Fauzan dari Padang berhasil menarik profit",
+"Anita dari Makassar menerima transfer profit",
+"Deni dari Bekasi berhasil menerima keuntungan",
+"Yusuf dari Batam menerima hasil ternak",
+"Salma dari Bandung berhasil menerima profit",
+"Riko dari Medan menerima transfer hasil",
+"Indah dari Jakarta berhasil menarik profit",
+"Farid dari Surabaya menerima hasil investasi",
+"Tina dari Bali berhasil menerima profit mingguan",
+"Rafi dari Aceh menerima transfer keuntungan",
+"Nurul dari Bogor berhasil menerima hasil ternak"
+];
+
+function showNotif(){
+const notif = document.getElementById("liveNotif");
+
+let random = dataNotif[Math.floor(Math.random()*dataNotif.length)];
+
+notif.innerHTML = `
+<strong>🟢 Penarikan Profit Berhasil</strong><br><br>
+${random}<br>
+<small>Baru saja • 1 menit lalu</small>
+`;
+
+notif.style.display="block";
+
+setTimeout(()=>{
+notif.style.display="none";
+},4000);
+}
+
+setInterval(showNotif,5000);
+
+setTimeout(showNotif,2000);
+</script>
