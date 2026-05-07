@@ -21,45 +21,15 @@ color:#222;
 /* HEADER */
 header{
 background:linear-gradient(90deg,#ff7b00,#ffb347);
-padding:20px;
+padding:25px 15px;
 text-align:center;
 color:white;
-position:sticky;
-top:0;
-z-index:999;
 box-shadow:0 2px 10px rgba(0,0,0,0.2);
 }
 
 header h1{
 font-size:28px;
-margin-bottom:8px;
-}
-
-/* LIVE NOTIF */
-.live-bar{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-background:#16a34a;
-color:white;
-padding:10px;
-overflow:hidden;
-z-index:9999;
-font-size:14px;
-font-weight:bold;
-white-space:nowrap;
-}
-
-.live-content{
-display:inline-block;
-padding-left:100%;
-animation:marquee 20s linear infinite;
-}
-
-@keyframes marquee{
-0%{transform:translateX(0);}
-100%{transform:translateX(-100%);}
+margin-bottom:10px;
 }
 
 /* HERO */
@@ -84,7 +54,31 @@ background:white;
 padding:20px;
 border-radius:12px;
 margin-bottom:20px;
-box-shadow:0 4px 10px rgba(0,0,0,0.1);
+box-shadow:0 4px 12px rgba(0,0,0,0.1);
+animation:fadeUp .5s ease;
+}
+
+@keyframes fadeUp{
+from{
+opacity:0;
+transform:translateY(20px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+.card h2{
+margin-bottom:15px;
+}
+
+/* TIMER */
+.timer{
+text-align:center;
+font-size:24px;
+font-weight:bold;
+color:red;
 }
 
 /* TABLE */
@@ -117,17 +111,23 @@ padding:12px;
 margin:8px 0;
 border-radius:8px;
 border:1px solid #ccc;
+font-size:15px;
 }
 
 form button{
 width:100%;
 padding:14px;
-border:none;
-border-radius:8px;
 background:#ff7b00;
 color:white;
+border:none;
+border-radius:8px;
 font-size:16px;
 cursor:pointer;
+transition:0.3s;
+}
+
+form button:hover{
+background:#e96f00;
 }
 
 /* CTA */
@@ -144,15 +144,54 @@ padding:15px 25px;
 border-radius:8px;
 text-decoration:none;
 font-size:18px;
+font-weight:bold;
 }
 
-/* TIMER */
-.timer{
-text-align:center;
-font-size:24px;
+/* POPUP NOTIF */
+.popup-notif{
+position:fixed;
+top:20px;
+right:20px;
+width:320px;
+background:white;
+border-radius:14px;
+box-shadow:0 8px 25px rgba(0,0,0,0.2);
+z-index:99999;
+overflow:hidden;
+display:none;
+animation:slideIn .5s ease;
+}
+
+.popup-header{
+background:#16a34a;
+color:white;
+padding:12px;
 font-weight:bold;
-color:red;
-margin-top:10px;
+font-size:15px;
+}
+
+.popup-body{
+padding:15px;
+font-size:14px;
+color:#333;
+line-height:1.5;
+}
+
+.popup-time{
+padding:0 15px 15px;
+font-size:12px;
+color:#777;
+}
+
+@keyframes slideIn{
+from{
+opacity:0;
+transform:translateX(100px);
+}
+to{
+opacity:1;
+transform:translateX(0);
+}
 }
 
 /* RESPONSIVE */
@@ -166,23 +205,41 @@ font-size:22px;
 height:220px;
 }
 
-.live-bar{
-font-size:12px;
+.timer{
+font-size:20px;
 }
+
+.popup-notif{
+width:90%;
+right:5%;
+top:15px;
+}
+
 }
 </style>
 </head>
 
 <body>
 
-<!-- NOTIFIKASI LIVE -->
-<div class="live-bar">
-<div class="live-content" id="liveNotif">
-🟢 Loading data penarikan profit investor...
-</div>
+<!-- POPUP NOTIFIKASI -->
+<div class="popup-notif" id="popupNotif">
+
+<div class="popup-header">
+🟢 Penarikan Profit Berhasil
 </div>
 
-<header style="margin-top:40px;">
+<div class="popup-body" id="popupText">
+Memuat data investor...
+</div>
+
+<div class="popup-time">
+Baru saja
+</div>
+
+</div>
+
+<!-- HEADER -->
+<header>
 <h1>🐔 PROGRAM KEMITRAAN TERNAK AYAM PETELUR 🔥</h1>
 <p>💸 Gajian Rutin Setiap 7 Hari + Modal Kembali</p>
 </header>
@@ -200,7 +257,7 @@ font-size:12px;
 <div class="timer" id="timer"></div>
 </div>
 
-<!-- TABLE -->
+<!-- TABEL -->
 <div class="card">
 <h2>📊 Tabel Paket Investasi</h2>
 
@@ -294,7 +351,7 @@ font-size:12px;
 
 <script>
 
-// TIMER
+/* TIMER */
 let end = new Date().getTime() + 86400000;
 
 setInterval(function(){
@@ -312,42 +369,69 @@ hours + " Jam " + minutes + " Menit " + seconds + " Detik";
 },1000);
 
 
-// LIVE NOTIFIKASI
+/* DATA NOTIFIKASI */
 const notifData = [
 
-"Andi dari Batam berhasil menarik profit Rp 3.060.000 • ",
-"Budi dari Pekanbaru menerima profit mingguan Rp 6.120.000 • ",
-"Rina dari Jakarta berhasil mencairkan profit Rp 15.300.000 • ",
-"Agus dari Bandung menerima hasil investasi Rp 27.540.000 • ",
-"Sri dari Medan berhasil menerima transfer profit • ",
-"Linda dari Aceh melakukan penarikan profit mingguan • ",
-"Fajar dari Surabaya menerima hasil ternak • ",
-"Rudi dari Lampung berhasil menerima profit • ",
-"Yuni dari Bali menerima transfer hasil investasi • ",
-"Hendra dari Bogor berhasil menarik keuntungan • "
+"Andi dari Batam berhasil menarik profit Rp 3.060.000",
+"Budi dari Pekanbaru menerima profit mingguan Rp 6.120.000",
+"Rina dari Jakarta berhasil mencairkan profit Rp 15.300.000",
+"Agus dari Bandung menerima hasil investasi Rp 27.540.000",
+"Sri dari Medan berhasil menerima transfer profit",
+"Linda dari Aceh melakukan penarikan profit mingguan",
+"Fajar dari Surabaya menerima hasil ternak",
+"Rudi dari Lampung berhasil menerima profit",
+"Yuni dari Bali menerima transfer hasil investasi",
+"Hendra dari Bogor berhasil menarik keuntungan",
+"Putri dari Padang menerima profit Rp 3.060.000",
+"Rahmat dari Makassar berhasil menerima transfer profit",
+"Dewi dari Solo menerima hasil investasi mingguan",
+"Yoga dari Bekasi berhasil mencairkan keuntungan",
+"Anton dari Tangerang menerima profit Rp 6.120.000",
+"Nina dari Jogja berhasil menerima hasil ternak",
+"Rizki dari Samarinda berhasil menarik profit",
+"Sinta dari Depok menerima transfer hasil investasi",
+"Rama dari Medan berhasil menerima profit mingguan",
+"Fauzi dari Batam melakukan penarikan profit",
+"Maya dari Cirebon berhasil menerima transfer profit",
+"Arif dari Pontianak menerima hasil investasi Rp 15.300.000",
+"Wulan dari Pekanbaru berhasil menerima profit",
+"Doni dari Lampung menerima transfer keuntungan",
+"Salsa dari Bandung berhasil menarik hasil investasi",
+"Joko dari Bali menerima profit mingguan",
+"Reni dari Jakarta berhasil menerima hasil ternak",
+"Bayu dari Aceh menerima transfer profit Rp 27.540.000",
+"Farhan dari Bogor berhasil mencairkan keuntungan",
+"Dina dari Surabaya menerima hasil investasi mingguan"
 
 ];
 
-function updateNotif(){
+/* POPUP */
+function showPopup(){
 
-let hasil = "";
+const popup = document.getElementById("popupNotif");
+const text = document.getElementById("popupText");
 
-for(let i=0;i<20;i++){
+let random =
+notifData[Math.floor(Math.random()*notifData.length)];
 
-hasil += notifData[Math.floor(Math.random()*notifData.length)];
+text.innerHTML = random;
+
+popup.style.display = "block";
+
+setTimeout(function(){
+
+popup.style.display = "none";
+
+},4000);
 
 }
 
-document.getElementById("liveNotif").innerHTML = hasil;
+setInterval(showPopup,5000);
 
-}
-
-setInterval(updateNotif,8000);
-
-updateNotif();
+setTimeout(showPopup,2000);
 
 
-// FORM WA
+/* FORM WHATSAPP */
 function kirimWA(){
 
 let nama = document.getElementById("nama").value;
